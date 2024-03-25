@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrador</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body style="background-color: #1F2F55" >
+
+    <div class="operadores-container">
+        <div class="operador" id="JOÃO"><h2>JOÃO</h2></div>
+        <div class="operador" id="MARIA"><h2>MARIA</h2></div>
+        <div class="operador" id="TESTE1"><h2>TESTE1</h2></div>
+        <div class="operador" id="TESTE2"><h2>TESTE2</h2></div>
+        <div class="operador" id="TESTE3"><h2>TESTE3</h2></div>
+        <div class="operador" id="TES3"><h2>TES3</h2></div>
+        <div class="operador" id="TESTE4"><h2>TESTE4</h2></div>
+        <div class="operador" id="TES5"><h2>TES5</h2></div>
+        <div class="operador" id="Sergio"><h2>SERGIO</h2></div>
+
+    </div>
+
+    <div class="export-button">
+        <button onclick="exportToExcel()">Exportar para Excel</button>
+    </div>
+
+    <br>
+
+    <div >
+        <img src="{{ url_for('static', filename='img/logo_white.png') }}" style="display: flex; text-align: center; margin: auto;">
+    </div>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        socket.on('checkin', function(msg) {
+            var operadorDiv = document.getElementById(msg.operador);
+            if (operadorDiv) {
+                var p = document.createElement("p");
+                p.innerText = 'Check-in: ' + msg.timestamp;
+                operadorDiv.appendChild(p);
+            }
+        });
+
+        function exportToExcel() {
+            window.location.href = '/export_excel';
+        }
+    </script>
+</body>
+</html>

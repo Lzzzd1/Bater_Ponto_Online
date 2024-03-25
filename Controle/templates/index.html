@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Operadores</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+
+<body style="background-color: #1F2F55">
+
+    <H1>NÃO ESQUEÇA DE CONFIRMAR</H1>
+    <br>
+
+    <div class="container">
+
+        <div class="button"><button onclick="checkIn(this, 'JOÃO')">JOÃO</button></div>
+        <div class="button"><button onclick="checkIn(this, 'MARIA')">MARIA</button></div>
+        <div class="button"><button onclick="checkIn(this, 'TESTE1')">TESTE1</button></div>
+        <div class="button"><button onclick="checkIn(this, 'TESTE2')">TESTE2</button></div>
+        <div class="button"><button onclick="checkIn(this, 'TESTE3')">TESTE3</button></div>
+        <div class="button"><button onclick="checkIn(this, 'TES3')">TES3</button></div>
+        <div class="button"><button onclick="checkIn(this, 'TESTE4')">TESTE4</button></div>
+        <div class="button"><button onclick="checkIn(this, 'TES5')">TES5</button></div>
+        <div class="button"><button onclick="checkIn(this, 'Sergio')">SERGIO</button></div>
+        
+    </div>
+
+    <div >
+        <img src="{{ url_for('static', filename='img/logo_white.png') }}" style="display: flex; text-align: center; margin: auto;">
+    </div>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        function checkIn(button, nome) {
+            button.style.backgroundColor = "green";
+            setTimeout(function() {
+                button.style.backgroundColor = "";
+            }, 1000); // Tempo em milissegundos para voltar a cor original
+            socket.emit('checkin', {operador: nome, timestamp: new Date().toISOString()});
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.button {
+    margin: 10px;
+    flex-basis: calc(25% - 20px);
+    text-align: center;
+}
+button {
+    width: 100%;
+    background-color: transparent;
+    color: aliceblue;
+    border-radius: 0.7em;
+    border-color: aliceblue ;
+    padding: 0.7em;
+    margin-top: 0.5em;
+    transition: background-color 0.5s ease;
+}
+h1{
+    margin: 0;
+    position: relative;
+    color: white;
+    text-align: center;
+}
